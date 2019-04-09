@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="DoctorsListItem">
+        <attr name="dr_fname" format="string"/>
+        <attr name="dr_lname" format="string"/>
+        <attr name="dr_sp" format="string"/>
+    </declare-styleable>
+</resources>

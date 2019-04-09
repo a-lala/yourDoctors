@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".ContentFragment"
+              android:id="@+id/list"
+              android:orientation="vertical"
+              android:background="#FFFFFFFF">
+    <LinearLayout android:layoutDirection="rtl"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="5dp"
+                  android:background="@android:color/darker_gray">
+        <FrameLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3">
+            <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:visibility="invisible"
+                      android:layout_margin="2dp"/>
+            <Spinner android:id="@+id/sp_title"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_gravity="center_vertical"
+
+                     android:layout_margin="2dp"/>
+        </FrameLayout>
+        <Spinner android:id="@+id/seach_tag"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:layout_weight="0.5"/>
+        <!--<Button android:layout_width="wrap_content"-->
+                     <!--android:layout_height="wrap_content"-->
+                     <!--android:background="@drawable/ic_search_black_24dp"-->
+                     <!--/>-->
+
+    </LinearLayout>
+
+    <LinearLayout android:layoutDirection="rtl"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="5dp"
+                  android:background="@android:color/darker_gray">
+        <TextView
+                android:id="@+id/tv_dr_name"
+                android:text="اسم الدكتور"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:layout_gravity="center_vertical"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                style="@style/doctor_list_ittem"/>
+
+
+        <TextView
+                android:id="@+id/tv_dr_sp"
+                android:text="الاختصاص"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:textAlignment="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@android:color/white"
+                style="@style/doctor_list_ittem"
+        />
+
+
+    </LinearLayout>
+
+    <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black"
+    />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:id="@+id/list_drs"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمود"
+            />
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمد"
+            />
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمد"
+            />
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمد"
+            />
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمد"
+                    app:dr_sp="عظمية"/>
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمد"
+                    app:dr_sp="أطفال"/>
+            <com.ba.yourdoctor.DoctorsListItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dr_fname="محمد"
+                    app:dr_sp="جراحة"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

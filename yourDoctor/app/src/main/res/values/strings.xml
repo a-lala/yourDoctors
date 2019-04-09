@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">YourDoctor</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="search_tag">
+        <item>اختصاص</item>
+        <item>اسم</item>
+    </string-array>
+
+</resources>
