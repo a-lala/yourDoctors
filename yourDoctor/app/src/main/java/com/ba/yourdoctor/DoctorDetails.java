@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.app.DialogFragment;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -132,6 +134,7 @@ public class DoctorDetails extends LinearLayout {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void writeToFile(Context context, String fileName, String data) {
 
 
@@ -144,11 +147,20 @@ public class DoctorDetails extends LinearLayout {
 //        }catch (Exception e){
 //
 //        }
-        String saveFolder ="/storage/emulated/0";
-        File directory = new File(saveFolder + "/myfiles");
+
+        String saveFolder =Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        File directory = new File(saveFolder);
+
         if(directory.mkdirs()){
             Log.e(TAG, "writeToFile:create folder" );;
-        }
+        }else
+            Toast.makeText(context,"caN't make it",Toast.LENGTH_SHORT);
+
+        directory = new File(saveFolder + "/myfiles");
+        if(directory.mkdirs()){
+            Log.e(TAG, "writeToFile:create folder" );;
+        }else
+            Toast.makeText(context,"caN't make it",Toast.LENGTH_SHORT);
         String path_file = saveFolder+ "/myfiles/" + fileName;
         File myfile = new File(path_file);
 
@@ -159,9 +171,11 @@ public class DoctorDetails extends LinearLayout {
             BufferedWriter br = new BufferedWriter(out);
             br.write(data + "\n");
             br.close();
+            Toast.makeText(context,"Done!!",Toast.LENGTH_SHORT);
 
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
+            Toast.makeText(context,"caN't make it:" + e.toString(),Toast.LENGTH_SHORT);
         }
     }
 
@@ -187,6 +201,7 @@ public class DoctorDetails extends LinearLayout {
             }
         } catch (FileNotFoundException e) {
             Log.e("activity", "File not found: " + e.toString());
+
         } catch (IOException e) {
             Log.e("activity", "Can not read file: " + e.toString());
         }
