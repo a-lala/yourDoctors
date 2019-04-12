@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener loadfragment(ContentFragment())
             }
             R.id.navigation_dashboard -> {
-                return@OnNavigationItemSelectedListener loadfragment(ContentFragment())
+                return@OnNavigationItemSelectedListener loadfragment(DashBoardFragment())
             }
             R.id.navigation_notifications -> {
-                return@OnNavigationItemSelectedListener loadfragment(ContentFragment())
+                return@OnNavigationItemSelectedListener loadfragment(NotificationsFragment())
             }
         }
         false

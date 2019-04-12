@@ -39,7 +39,8 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
         et_name.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
@@ -49,7 +50,7 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if(s.length() != 0){
+                if (s.length() != 0) {
                     View vi = LayoutInflater.from(getContext()).inflate(R.layout.fragment_content, null);
                     LinearLayout list2 = (LinearLayout) vi.findViewById(R.id.list_drs);
                     int cnt = list2.getChildCount();
@@ -85,6 +86,8 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
         int count = list.getChildCount();
         DoctorsListItem v = null;
         ArrayList<String> ll = new ArrayList<String>();
+
+        ll.add("الكل");
         for (int i = 0; i < count; i++) {
             v = (DoctorsListItem) list.getChildAt(i);
             String t = v.get_Dr_sp().getText().toString();
@@ -92,16 +95,19 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
             doctorsListItems.add(v);
         }
 
+        List<String> array=(new ListHelper(new String[0]).unique(ll));
+        //array;
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_spinner_item,
-                new ListHelper<>(new String[0]).unique(ll)
+                array
         );
 
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 // (4) set the adapter on the spinner
         spinner2.setAdapter(adapter2);
+        spinner2.setSelection(4);
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -110,6 +116,7 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
                 View vi = LayoutInflater.from(getContext()).inflate(R.layout.fragment_content, null);
                 LinearLayout list2 = (LinearLayout) vi.findViewById(R.id.list_drs);
                 int count = list2.getChildCount();
+                if (!key.equals("الكل")) {
 //                DoctorsListItem vv = null;
 //                ArrayList<String> lll = new ArrayList<String>();
 //                for (int ii = 0; ii < count; ii++) {
@@ -122,18 +129,32 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
 //
 //
 
-                //String key2 = spinner2.getSelectedItem().toString();
-                DoctorsListItem v;
-                //ArrayList ll = (ArrayList) doctorsListItems;
-                list.removeAllViews();
-                for (int j = count - 1; j > -1; j--) {
-                    //doctorsListItems.get(j);
-                    v = (DoctorsListItem) list2.getChildAt(j);
-                    if (v.get_Dr_sp().getText().equals(key)) {
+                    //String key2 = spinner2.getSelectedItem().toString();
+                    DoctorsListItem v;
+                    //ArrayList ll = (ArrayList) doctorsListItems;
+                    list.removeAllViews();
+                    for (int j = count - 1; j > -1; j--) {
+                        //doctorsListItems.get(j);
+                        v = (DoctorsListItem) list2.getChildAt(j);
+                        if (v.get_Dr_sp().getText().equals(key)) {
+                            ((LinearLayout) v.getParent()).removeView(v);
+                            list.addView(v);
+                        }
+                        //list.addView((doctorsListItems.get(j)));
+                    }
+                } else if (key.equals("الكل")) {
+                    DoctorsListItem v;
+                    //ArrayList ll = (ArrayList) doctorsListItems;
+                    list.removeAllViews();
+                    for (int j = count - 1; j > -1; j--) {
+                        //doctorsListItems.get(j);
+                        v = (DoctorsListItem) list2.getChildAt(j);
+
                         ((LinearLayout) v.getParent()).removeView(v);
                         list.addView(v);
+
+                        //list.addView((doctorsListItems.get(j)));
                     }
-                    //list.addView((doctorsListItems.get(j)));
                 }
 
 //                for (int j = 0; j < count; j++) {
@@ -173,7 +194,7 @@ public class ContentFragment extends Fragment implements AdapterView.OnItemSelec
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-        Toast.makeText(getContext(), "gggggg", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "gggggg", Toast.LENGTH_SHORT).show();
         switch (j) {
             case 0:
                 spinner2.setVisibility(View.VISIBLE);
